@@ -133,6 +133,12 @@ $user_data = base64_encode(json_encode([
     'avatar_url' => $avatar_url,
 ]));
 
-$redirect_to = ($state_param === 'typing') ? '/typing.html' : '/';
+if ($state_param === 'typing') {
+    $redirect_to = '/typing.html';
+} elseif ($state_param === 'templates') {
+    $redirect_to = '/templates.html';
+} else {
+    $redirect_to = '/';
+}
 $sep         = (strpos($redirect_to, '?') !== false) ? '&' : '?';
 do_redirect($redirect_to . $sep . 'user=' . urlencode($user_data));
