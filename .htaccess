@@ -3,6 +3,9 @@ RewriteEngine On
 # /typing и /typing/ -> typing.html
 RewriteRule ^typing/?$ /typing.html [L,R=200]
 
+# /templates и /templates/ -> templates.html
+RewriteRule ^templates/?$ /templates.html [L,R=200]
+
 # Discord OAuth маршруты (замена netlify functions)
 RewriteRule ^\.netlify/functions/discord-login$ /discord-login.php [L,QSA]
 RewriteRule ^\.netlify/functions/discord-callback$ /discord-callback.php [L,QSA]
