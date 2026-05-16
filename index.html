@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,42 +9,54 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="theme.js"></script>
 <style>
   :root {
-    --bg: #f0f2ff;
-    --bg2: #e2e7f8;
-    --card: #ffffff;
-    --text: #080f2e;
-    --text2: #5560888;
-    --accent: #4361ee;
-    --accent2: #2d47cc;
-    --accent-glow: rgba(67,97,238,0.22);
-    --border: #d0d7f0;
-    --shadow: 0 4px 24px rgba(10,20,80,0.09);
+    --bg: #f6f3ee;
+    --bg2: #efeae0;
+    --card: #fbf9f4;
+    --text: #1a1816;
+    --text2: #6d655c;
+    --accent: #b8864c;
+    --accent2: #9a6e3a;
+    --accent-glow: rgba(184,134,76,0.18);
+    --border: rgba(26,24,22,0.10);
+    --shadow: 0 1px 2px rgba(26,24,22,0.04), 0 8px 28px rgba(26,24,22,0.06);
     --radius: 16px;
-    --tag-bg: #dde5ff;
-    --tag-text: #4361ee;
-    --hero-grad-1: #4361ee;
-    --hero-grad-2: #7c3aed;
-    --hero-grad-3: #a78bfa;
+    --tag-bg: rgba(184,134,76,0.10);
+    --tag-text: #8a5f2c;
+    --hero-grad-1: #1a1816;
+    --hero-grad-2: #b8864c;
+    --hero-grad-3: #6d655c;
   }
   [data-theme="dark"] {
-    --bg: #05071a;
-    --bg2: #0c1030;
-    --card: #101535;
-    --text: #eaedff;
-    --text2: #7c85b0;
-    --accent: #5b8cff;
-    --accent2: #8aaeff;
-    --accent-glow: rgba(91,140,255,0.38);
-    --border: #1c2454;
-    --shadow: 0 4px 28px rgba(0,0,0,0.55);
-    --tag-bg: #141d4d;
-    --tag-text: #89aeff;
-    --hero-grad-1: #3a5be8;
-    --hero-grad-2: #6d28d9;
-    --hero-grad-3: #a78bfa;
+    --bg: #15110d;
+    --bg2: #1f1a13;
+    --card: #1c1812;
+    --text: #f1ece2;
+    --text2: #9a8f7e;
+    --accent: #d9a468;
+    --accent2: #e8b783;
+    --accent-glow: rgba(217,164,104,0.22);
+    --border: rgba(241,236,226,0.08);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 12px 36px rgba(0,0,0,0.45);
+    --tag-bg: rgba(217,164,104,0.12);
+    --tag-text: #e8b783;
+    --hero-grad-1: #f1ece2;
+    --hero-grad-2: #d9a468;
+    --hero-grad-3: #9a8f7e;
   }
+
+  /* View Transitions API */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-old(root) { z-index: 1; }
+  ::view-transition-new(root) { z-index: 999; }
+  [data-theme="dark"]::view-transition-old(root) { z-index: 999; }
+  [data-theme="dark"]::view-transition-new(root) { z-index: 1; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
@@ -73,54 +85,55 @@
   [data-theme="dark"] .mesh-bg span { mix-blend-mode: screen; }
   .mesh-bg .orb1 {
     width: 70vw; height: 70vw;
-    background: radial-gradient(circle, rgba(91,140,255,0.28) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(184,134,76,0.18) 0%, transparent 70%);
     top: -20vw; right: -15vw;
     animation: orbFloat1 24s ease-in-out infinite;
   }
   .mesh-bg .orb2 {
     width: 60vw; height: 60vw;
-    background: radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(154,143,126,0.16) 0%, transparent 70%);
     bottom: -18vw; left: -12vw;
     animation: orbFloat2 30s ease-in-out infinite;
   }
   .mesh-bg .orb3 {
     width: 40vw; height: 40vw;
-    background: radial-gradient(circle, rgba(167,139,250,0.15) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(217,164,104,0.10) 0%, transparent 65%);
     top: 35%; left: 30%;
     animation: orbFloat3 20s ease-in-out infinite;
   }
-  [data-theme="light"] .mesh-bg .orb1 { background: radial-gradient(circle, rgba(67,97,238,0.12) 0%, transparent 70%); }
-  [data-theme="light"] .mesh-bg .orb2 { background: radial-gradient(circle, rgba(124,58,237,0.10) 0%, transparent 70%); }
-  [data-theme="light"] .mesh-bg .orb3 { background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 65%); }
+  [data-theme="light"] .mesh-bg .orb1 { background: radial-gradient(circle, rgba(184,134,76,0.10) 0%, transparent 70%); }
+  [data-theme="light"] .mesh-bg .orb2 { background: radial-gradient(circle, rgba(109,101,92,0.08) 0%, transparent 70%); }
+  [data-theme="light"] .mesh-bg .orb3 { background: radial-gradient(circle, rgba(184,134,76,0.06) 0%, transparent 65%); }
 
   @keyframes orbFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-4%,5%) scale(1.07)} }
   @keyframes orbFloat2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(5%,-4%) scale(1.1)} }
   @keyframes orbFloat3 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(3%,3%) scale(1.04)} 66%{transform:translate(-2%,-2%) scale(0.96)} }
 
-  /* ── Dot grid ── */
+  /* Точечная сетка */
   .dot-grid {
     position: fixed; inset: 0; z-index: 1; pointer-events: none;
-    background-image: radial-gradient(rgba(67,97,238,0.06) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(rgba(26,24,22,0.06) 1.5px, transparent 1.5px);
     background-size: 28px 28px;
+    transition: background-image 0.4s ease;
   }
   [data-theme="dark"] .dot-grid {
-    background-image: radial-gradient(rgba(139,174,255,0.07) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(rgba(241,236,226,0.05) 1.5px, transparent 1.5px);
   }
 
   /* ── Make content sit above canvas layers ── */
   header, main, footer { position: relative; z-index: 10; }
 
-  /* ── HEADER ── */
+  /* HEADER */
   header {
     position: sticky; top: 0; z-index: 200;
-    background: rgba(240,242,255,0.65);
+    background: rgba(246,243,238,0.72);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 0 28px;
-    transition: background 0.35s;
+    transition: background 0.4s, border-color 0.4s;
   }
-  [data-theme="dark"] header { background: rgba(5,7,26,0.70); }
+  [data-theme="dark"] header { background: rgba(21,17,13,0.78); }
 
   .header-inner {
     max-width: 1240px; margin: 0 auto;
@@ -154,22 +167,31 @@
   .header-actions { display: flex; align-items: center; gap: 10px; }
   .theme-btn {
     background: var(--bg2); border: 1px solid var(--border);
-    color: var(--text2); cursor: pointer;
-    border-radius: 10px; padding: 7px 12px; font-size: 1rem;
-    transition: all 0.2s; line-height: 1;
+    color: var(--text); cursor: pointer;
+    border-radius: 999px; width: 38px; height: 38px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+    position: relative; overflow: hidden;
   }
-  .theme-btn:hover { color: var(--text); border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+  .theme-btn:hover { background: var(--card); border-color: var(--accent); transform: translateY(-1px); }
+  .theme-btn:active { transform: scale(0.96); }
+  .theme-btn svg {
+    transition: transform 0.5s cubic-bezier(0.32,0.72,0,1), opacity 0.3s;
+  }
+  .theme-btn:hover svg { transform: rotate(25deg); }
 
   .header-cta {
     display: inline-flex; align-items: center; gap: 7px;
-    padding: 9px 18px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--accent), var(--hero-grad-2));
-    color: #fff !important; text-decoration: none; font-size: 0.84rem;
-    font-family: 'Unbounded', sans-serif; font-weight: 700;
-    transition: all 0.22s; letter-spacing: 0.01em;
-    box-shadow: 0 4px 18px var(--accent-glow);
+    padding: 9px 18px; border-radius: 999px;
+    background: var(--text);
+    color: var(--bg) !important; text-decoration: none; font-size: 0.84rem;
+    font-family: 'Unbounded', sans-serif; font-weight: 600;
+    transition: transform 0.25s cubic-bezier(0.32,0.72,0,1), box-shadow 0.25s;
+    letter-spacing: 0.01em;
+    box-shadow: 0 1px 2px rgba(26,24,22,0.10);
   }
-  .header-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 26px var(--accent-glow); filter: brightness(1.1); }
+  .header-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(26,24,22,0.18); }
+  .header-cta:active { transform: scale(0.97); }
 
   @media (max-width: 720px) { nav.main-nav { display: none; } }
 
@@ -211,14 +233,25 @@
   .hero-title {
     font-family: 'Unbounded', sans-serif;
     font-size: clamp(2.6rem, 6.5vw, 4.8rem);
-    font-weight: 800; line-height: 1.04;
-    margin-bottom: 20px; letter-spacing: -2px;
+    font-weight: 700; line-height: 1.02;
+    margin-bottom: 20px; letter-spacing: -0.035em;
+    color: var(--text);
+    text-wrap: balance;
   }
   .hero-title .accent {
-    background: linear-gradient(125deg, var(--hero-grad-1) 10%, var(--hero-grad-2) 55%, var(--hero-grad-3) 100%);
-    -webkit-background-clip: text; background-clip: text;
-    color: transparent; background-size: 200% 200%;
-    animation: gradShift 8s ease infinite;
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 600;
+    position: relative;
+  }
+  .hero-title .accent::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0.06em;
+    height: 0.08em;
+    background: var(--accent);
+    opacity: 0.25;
+    border-radius: 2px;
   }
   @keyframes gradShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 
@@ -242,17 +275,19 @@
     border: 1px solid transparent; letter-spacing: 0.01em;
   }
   .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--hero-grad-2));
-    color: #fff;
-    box-shadow: 0 6px 26px var(--accent-glow);
+    background: var(--text);
+    color: var(--bg);
+    box-shadow: 0 1px 2px rgba(26,24,22,0.10), 0 6px 18px rgba(26,24,22,0.10);
   }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 36px var(--accent-glow); filter: brightness(1.08); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(26,24,22,0.20); }
+  .btn-primary:active { transform: scale(0.98); }
   .btn-ghost {
     background: var(--card); color: var(--text);
     border-color: var(--border);
     backdrop-filter: blur(8px);
   }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 20px var(--accent-glow); }
+  .btn-ghost:hover { border-color: var(--text); transform: translateY(-2px); }
+  .btn-ghost:active { transform: scale(0.98); }
 
   .hero-meta {
     display: flex; flex-wrap: wrap; gap: 24px;
@@ -281,7 +316,7 @@
   .hero-image img {
     position: relative; z-index: 1;
     width: min(68%, 360px); height: auto;
-    filter: drop-shadow(0 24px 48px rgba(10,20,80,0.4));
+    filter: drop-shadow(0 24px 48px rgba(26,24,22,0.25));
     animation: floatY 6s ease-in-out infinite;
     border-radius: 30px;
   }
@@ -310,16 +345,16 @@
   .feature:nth-child(2) { animation-delay:0.22s }
   .feature:nth-child(3) { animation-delay:0.32s }
 
-  /* shimmer top bar */
+  /* акцентная полоса */
   .feature::before {
     content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--hero-grad-2), var(--hero-grad-3));
+    top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent);
     transform: scaleX(0); transform-origin: left;
-    transition: transform 0.35s ease;
+    transition: transform 0.4s cubic-bezier(0.32,0.72,0,1);
     border-radius: 20px 20px 0 0;
   }
-  /* inner glow on hover */
+  /* мягкое свечение при hover */
   .feature::after {
     content: ''; position: absolute; inset: 0; border-radius: 20px;
     background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 60%);
@@ -327,11 +362,11 @@
     pointer-events: none;
   }
   .feature:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent);
-    box-shadow: 0 20px 50px rgba(10,20,80,0.14);
+    transform: translateY(-6px);
+    border-color: var(--text);
+    box-shadow: 0 1px 2px rgba(26,24,22,0.05), 0 18px 40px rgba(26,24,22,0.10);
   }
-  [data-theme="dark"] .feature:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+  [data-theme="dark"] .feature:hover { box-shadow: 0 18px 40px rgba(0,0,0,0.45); border-color: var(--text); }
   .feature:hover::before { transform: scaleX(1); }
   .feature:hover::after  { opacity: 1; }
 
@@ -343,9 +378,8 @@
     position: relative; z-index: 1;
   }
   .feature:hover .feature-icon {
-    background: linear-gradient(135deg, var(--accent), var(--hero-grad-2));
-    color: #fff; transform: rotate(-8deg) scale(1.07);
-    box-shadow: 0 6px 18px var(--accent-glow);
+    background: var(--text);
+    color: var(--bg); transform: rotate(-6deg) scale(1.04);
   }
   .feature-icon svg { width: 26px; height: 26px; }
 
@@ -418,7 +452,7 @@
       <a href="/typing">Скорость печати</a>
     </nav>
     <div class="header-actions">
-      <button class="theme-btn" id="themeBtn" title="Сменить тему">☀️</button>
+      <button class="theme-btn" id="themeBtn" title="Сменить тему" aria-label="Сменить тему"></button>
       <a href="/templates" class="header-cta">
         Открыть
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -515,26 +549,10 @@
 </footer>
 
 <script>
-  // Theme toggle
-  function initTheme() {
-    const saved = localStorage.getItem('theme');
-    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = saved || (sysDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-    document.getElementById('themeBtn').textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-  document.getElementById('themeBtn').addEventListener('click', () => {
-    const cur = document.documentElement.getAttribute('data-theme');
-    const next = cur === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
-  });
-  initTheme();
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
-<!-- Particles + cursor effects -->
+<!-- Фоновые частицы (без кастомного курсора) -->
 <script src="particles-cursor.js"></script>
 </body>
 </html>
