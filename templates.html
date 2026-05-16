@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +6,7 @@
 <title>Шаблоны — готовые тексты на все случаи</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist:wght@400;500&display=swap" rel="stylesheet">
 <script src="theme.js"></script>
 <style>
   :root {
@@ -27,6 +26,13 @@
     --hero-grad-1: #1a1816;
     --hero-grad-2: #b8864c;
     --hero-grad-3: #6d655c;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Geist', 'DM Sans', sans-serif;
+    --radius-card: 20px;
+    --radius-pill: 9999px;
+    --transition-spring: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --shadow-ambient: 0 2px 8px rgba(184,134,76,0.06), 0 8px 32px rgba(26,24,22,0.04);
+    --shadow-hover: 0 8px 28px rgba(184,134,76,0.14), 0 2px 8px rgba(26,24,22,0.06);
   }
   [data-theme="dark"] {
     --bg: #15110d;
@@ -62,12 +68,13 @@
   body {
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Golos Text', sans-serif;
+    font-family: var(--font-body);
     background: var(--bg);
     color: var(--text);
-    min-height: 100vh;
+    min-height: 100dvh;
     transition: background 0.35s, color 0.35s;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   /* ── Mesh gradient orbs (shared with index) ── */
@@ -94,9 +101,9 @@
     top: 40%; left: 35%;
     animation: orbFloat3 20s ease-in-out infinite;
   }
-  [data-theme="light"] .mesh-bg .orb1 { background: radial-gradient(circle, rgba(184,134,76,0.08) 0%, transparent 70%); }
-  [data-theme="light"] .mesh-bg .orb2 { background: radial-gradient(circle, rgba(109,101,92,0.07) 0%, transparent 70%); }
-  [data-theme="light"] .mesh-bg .orb3 { background: radial-gradient(circle, rgba(184,134,76,0.05) 0%, transparent 65%); }
+  [data-theme="light"] .mesh-bg .orb1 { background: radial-gradient(circle, rgba(184,134,76,0.06) 0%, transparent 70%); }
+  [data-theme="light"] .mesh-bg .orb2 { background: radial-gradient(circle, rgba(109,101,92,0.05) 0%, transparent 70%); }
+  [data-theme="light"] .mesh-bg .orb3 { background: radial-gradient(circle, rgba(184,134,76,0.04) 0%, transparent 65%); }
 
   @keyframes orbFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-4%,5%) scale(1.07)} }
   @keyframes orbFloat2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(5%,-4%) scale(1.1)} }
@@ -118,24 +125,37 @@
 
   /* HEADER */
   header {
-    position: sticky; top: 0; z-index: 200;
-    background: rgba(246,243,238,0.72);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 0 24px;
-    transition: background 0.4s, border-color 0.4s;
+    position: sticky; top: 16px; z-index: 200;
+    display: flex; justify-content: center;
+    padding: 0 16px;
+    background: transparent;
+    border: none;
+    pointer-events: none;
   }
-  [data-theme="dark"] header { background: rgba(21,17,13,0.78); }
+  [data-theme="dark"] header { background: transparent; }
   .header-inner {
-    max-width: 100%; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 66px; gap: 16px; width: 100%; position: relative;
+    pointer-events: all;
+    background: rgba(246,243,238,0.88);
+    border: 1px solid rgba(26,24,22,0.08);
+    border-radius: 9999px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    padding: 0 20px;
+    height: 52px;
+    display: flex; align-items: center; gap: 16px;
+    box-shadow: 0 2px 20px rgba(26,24,22,0.08), 0 1px 4px rgba(26,24,22,0.04);
+    transition: background 0.4s;
+    position: relative;
+  }
+  [data-theme="dark"] .header-inner {
+    background: rgba(21,17,13,0.90);
+    border-color: rgba(241,236,226,0.10);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
   }
   .logo {
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Unbounded', sans-serif;
+    font-family: var(--font-heading);
     font-weight: 700; font-size: 1.1rem;
     color: var(--text); text-decoration: none;
     letter-spacing: -0.5px;
@@ -162,12 +182,12 @@
 
   .admin-btn {
     background: var(--text); color: var(--bg);
-    border: none; border-radius: 999px;
+    border: none; border-radius: 9999px;
     padding: 8px 18px; font-size: 0.85rem;
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Golos Text', sans-serif; font-weight: 600;
-    cursor: pointer; transition: transform 0.25s, box-shadow 0.25s;
+    font-family: var(--font-body); font-weight: 600;
+    cursor: pointer; transition: var(--transition-spring);
     text-decoration: none;
     box-shadow: 0 1px 2px rgba(26,24,22,0.10);
   }
@@ -176,18 +196,34 @@
   /* HERO */
   .hero {
     max-width: 1100px; margin: 0 auto;
-    padding: 56px 24px 32px;
-    animation: fadeUp 0.5s ease both;
+    padding: 72px 24px 40px;
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    text-align: left;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border: 1px solid rgba(184,134,76,0.2);
+    border-radius: 9999px;
+    padding: 5px 14px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
   }
   .hero h1 {
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Unbounded', sans-serif;
-    font-size: clamp(1.6rem, 4vw, 2.5rem);
-    font-weight: 700; line-height: 1.15;
-    margin-bottom: 12px;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 14px;
     color: var(--text);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     text-wrap: balance;
   }
   @keyframes gradShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
@@ -204,15 +240,15 @@
     position: relative; flex: 1; min-width: 220px;
   }
   .search-wrap input {
-    width: 100%; padding: 10px 16px 10px 40px;
+    width: 100%; padding: 11px 16px 11px 44px;
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; color: var(--text);
+    border-radius: 14px; color: var(--text);
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; font-size: 0.95rem;
-    outline: none; transition: border-color 0.2s;
+  font-family: var(--font-body); font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
   .search-icon {
     position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
     color: var(--text2); pointer-events: none; font-size: 1rem;
@@ -222,13 +258,14 @@
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
   }
   .cat-btn {
-    padding: 7px 14px; border-radius: 8px; font-size: 0.85rem;
+    padding: 7px 16px; border-radius: 9999px; font-size: 0.85rem;
     border: 1px solid var(--border); background: var(--card);
-    color: var(--text2); cursor: pointer; font-family: 'Golos Text', sans-serif;
-    transition: all 0.18s;
+    color: var(--text2); cursor: pointer; font-family: var(--font-body);
+    transition: var(--transition-spring);
   }
   .cat-btn:hover, .cat-btn.active {
     background: var(--accent); color: #fff; border-color: var(--accent);
+    box-shadow: 0 2px 12px var(--accent-glow);
   }
 
   /* GRID */
@@ -236,42 +273,51 @@
     max-width: 1100px; margin: 0 auto;
     padding: 0 24px 60px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
   }
 
-  /* CARD */
+  /* CARD BEZEL + CARD */
+  .card-bezel {
+    padding: 2px;
+    border-radius: 22px;
+    background: rgba(26,24,22,0.03);
+    border: 1px solid var(--border);
+    transition: var(--transition-spring);
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .card-bezel.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .card-bezel:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(184,134,76,0.2);
+  }
+  [data-theme="dark"] .card-bezel {
+    background: rgba(241,236,226,0.02);
+  }
+
   .card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 20px;
-    box-shadow: var(--shadow);
+    background: var(--card);
+    border-radius: 18px;
+    padding: 22px;
+    border: none;
+    box-shadow: none;
     display: flex; flex-direction: column; gap: 10px;
-    animation: fadeUp 0.4s ease both;
-    transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
     cursor: pointer;
     position: relative; overflow: hidden;
-  }
-  .card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: var(--accent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s ease;
+    height: 100%;
   }
   .card::after {
     content: ''; position: absolute; inset: 0;
     background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 60%);
     opacity: 0; transition: opacity 0.3s; pointer-events: none;
-    border-radius: var(--radius);
+    border-radius: 18px;
   }
-  .card:hover {
-    box-shadow: 0 10px 32px rgba(26,24,22,0.10);
-    transform: translateY(-4px);
-    border-color: var(--text);
-  }
-  [data-theme="dark"] .card:hover { box-shadow: 0 10px 32px rgba(0,0,0,0.6); }
-  .card:hover::before { transform: scaleX(1); }
-  .card:hover::after { opacity: 1; }
+  .card-bezel:hover .card::after { opacity: 1; }
   .card-tag {
     display: inline-block; padding: 3px 10px;
     background: var(--tag-bg); color: var(--tag-text);
@@ -281,7 +327,7 @@
   .card h3 {
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-heading);
     font-size: 0.95rem; font-weight: 600; line-height: 1.3;
   }
   .card p {
@@ -289,40 +335,44 @@
     flex: 1;
   }
   .card-actions {
-    display: flex; gap: 8px; margin-top: 4px;
+    display: flex; gap: 8px; margin-top: auto; padding-top: 12px;
   }
   .btn-copy {
-    flex: 1; padding: 9px 0;
-    background: var(--text); color: var(--bg);
-    border: none; border-radius: 10px; font-size: 0.85rem;
+    flex: 1; padding: 10px 16px;
+    background: var(--accent); color: #fff;
+    border: none; border-radius: 9999px; font-size: 0.83rem;
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Golos Text', sans-serif; font-weight: 600;
-    cursor: pointer; transition: all 0.2s;
-    box-shadow: 0 3px 12px var(--accent-glow);
+    font-family: var(--font-body); font-weight: 600;
+    cursor: pointer; transition: var(--transition-spring);
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    box-shadow: 0 2px 12px var(--accent-glow);
     position: relative; z-index: 1;
   }
-  .btn-copy:hover { filter: brightness(1.1); transform: translateY(-1px); }
-  .btn-copy:active { transform: scale(0.97); }
-  .btn-copy.copied { background: linear-gradient(135deg, #16a34a, #22c55e); }
+  .btn-copy:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-copy:active { transform: scale(0.97) translateY(0); }
+  .btn-copy.copied { background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 2px 12px rgba(34,197,94,0.3); }
 
   .btn-open {
-    padding: 8px 14px;
-    background: var(--bg2); color: var(--text);
-    border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem;
+    padding: 10px 16px;
+    background: transparent; color: var(--text2);
+    border: 1.5px solid var(--border); border-radius: 9999px; font-size: 0.83rem;
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif;
-    cursor: pointer; transition: all 0.2s;
+  font-family: var(--font-body);
+    cursor: pointer; transition: var(--transition-spring);
+    display: flex; align-items: center; gap: 7px;
+    white-space: nowrap;
   }
-  .btn-open:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-open:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .btn-open:active { transform: scale(0.97); }
 
   /* EMPTY */
   .empty {
     grid-column: 1/-1; text-align: center;
     padding: 60px 20px; color: var(--text2);
   }
-  .empty-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .empty-icon { margin-bottom: 16px; color: var(--text2); }
 
   /* MODAL — шаблон */
   .modal-overlay {
@@ -348,15 +398,16 @@
   }
   .modal-close {
     background: var(--bg2); border: none; color: var(--text2);
-    width: 32px; height: 32px; border-radius: 8px; font-size: 1.1rem;
-    cursor: pointer; transition: all 0.15s; flex-shrink: 0;
+    width: 32px; height: 32px; border-radius: 9999px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: var(--transition-spring); flex-shrink: 0;
   }
-  .modal-close:hover { color: var(--text); }
+  .modal-close:hover { color: var(--text); background: var(--border); }
 
   .modal h2 {
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-heading);
     font-size: 1.1rem; line-height: 1.3;
   }
   .modal-meta {
@@ -386,7 +437,7 @@
   .tpl-origin {
     display: inline-flex; align-items: center; gap: 4px;
     border-radius: 6px; padding: 3px 9px; font-size: 0.72rem;
-    font-family: 'Golos Text', sans-serif; font-weight: 600;
+    font-family: var(--font-body); font-weight: 600;
     margin-top: 8px; letter-spacing: 0.01em;
   }
   .tpl-origin.original { background: #166534; color: #86efac; }
@@ -397,11 +448,11 @@
     width: 100%; margin-top: 16px;
     padding: 12px;
     background: var(--text); color: var(--bg);
-    border: none; border-radius: 12px; font-size: 0.95rem;
+    border: none; border-radius: 9999px; font-size: 0.95rem;
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Golos Text', sans-serif; font-weight: 600;
-    cursor: pointer; transition: all 0.2s;
+    font-family: var(--font-body); font-weight: 600;
+    cursor: pointer; transition: var(--transition-spring);
     box-shadow: 0 4px 18px var(--accent-glow);
   }
   .modal-copy:hover { filter: brightness(1.1); transform: translateY(-1px); }
@@ -426,7 +477,7 @@
   .admin-box h2 {
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-heading);
     font-size: 1.1rem; margin-bottom: 20px;
   }
   .form-field { margin-bottom: 14px; }
@@ -437,7 +488,7 @@
     border-radius: 10px; color: var(--text);
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; font-size: 0.92rem;
+  font-family: var(--font-body); font-size: 0.92rem;
     outline: none; transition: border-color 0.2s;
   }
   .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
@@ -448,11 +499,11 @@
   .btn-primary {
     width: 100%; padding: 12px;
     background: var(--text); color: var(--bg);
-    border: none; border-radius: 12px; font-size: 0.95rem;
+    border: none; border-radius: 9999px; font-size: 0.95rem;
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Golos Text', sans-serif; font-weight: 600;
-    cursor: pointer; transition: all 0.2s;
+    font-family: var(--font-body); font-weight: 600;
+    cursor: pointer; transition: var(--transition-spring);
     box-shadow: 0 4px 18px var(--accent-glow);
   }
   .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
@@ -479,15 +530,15 @@
   .panel-header h2 {
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Unbounded', sans-serif; font-size: 1rem;
+  font-family: var(--font-heading); font-size: 1rem;
   }
   .panel-close {
     background: var(--bg2); border: 1px solid var(--border);
-    color: var(--text); border-radius: 8px; padding: 6px 14px;
+    color: var(--text); border-radius: 9999px; padding: 6px 14px;
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; cursor: pointer;
-    transition: all 0.2s;
+  font-family: var(--font-body); cursor: pointer;
+    transition: var(--transition-spring);
   }
   .panel-close:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -498,7 +549,7 @@
   .panel-section h3 {
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-heading);
     font-size: 0.9rem; margin-bottom: 16px;
     padding-bottom: 10px; border-bottom: 1px solid var(--border);
   }
@@ -521,7 +572,7 @@
     padding: 5px 12px; border-radius: 7px; font-size: 0.8rem;
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; cursor: pointer; border: none;
+  font-family: var(--font-body); cursor: pointer; border: none;
     transition: all 0.15s;
   }
   .btn-edit { background: var(--bg2); color: var(--text); border: 1px solid var(--border); }
@@ -536,7 +587,7 @@
   .add-form h4 {
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-heading);
     font-size: 0.85rem; margin-bottom: 16px; color: var(--text2);
   }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -545,7 +596,8 @@
   .toast {
     position: fixed; bottom: 24px; right: 24px; z-index: 999;
     background: #1a1a1a; color: #fff;
-    padding: 12px 20px; border-radius: 10px; font-size: 0.88rem;
+    padding: 12px 20px; border-radius: 14px; font-size: 0.88rem;
+    font-family: var(--font-body);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     transform: translateY(20px); opacity: 0;
     transition: all 0.3s; pointer-events: none;
@@ -574,19 +626,19 @@
   /* LAYOUT */
   .layout {
     display: flex;
-    min-height: calc(100vh - 66px);
+    min-height: calc(100dvh - 84px);
   }
 
   /* CHAT SIDEBAR */
   .chat-sidebar {
     width: 300px;
     flex-shrink: 0;
-    border-right: 1px solid var(--border);
+    border-right: 1px solid rgba(26,24,22,0.06);
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 66px);
+    height: calc(100dvh - 84px);
     position: sticky;
-    top: 66px;
+    top: 84px;
     background: rgba(246,243,238,0.62);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -603,8 +655,9 @@
   .chat-title {
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-heading);
     font-size: 0.82rem; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
   }
   .chat-online {
     font-size: 0.75rem; color: var(--text2);
@@ -665,18 +718,18 @@
   .chat-composer input {
     flex: 1; padding: 8px 12px;
     background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 10px; color: var(--text);
+    border-radius: 9999px; color: var(--text);
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; font-size: 0.88rem;
+  font-family: var(--font-body); font-size: 0.88rem;
     outline: none; transition: border-color 0.2s;
   }
   .chat-composer input:focus { border-color: var(--accent); }
   .chat-composer button {
     width: 36px; height: 36px; flex-shrink: 0;
     background: var(--text); color: var(--bg);
-    border: none; border-radius: 10px; font-size: 1rem;
-    cursor: pointer; transition: all 0.2s;
+    border: none; border-radius: 9999px; font-size: 1rem;
+    cursor: pointer; transition: var(--transition-spring);
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 3px 10px var(--accent-glow);
   }
@@ -709,7 +762,7 @@
     padding: 10px 16px; font-size: 0.83rem;
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; font-weight: 500;
+  font-family: var(--font-body); font-weight: 500;
     background: none; border: none; border-bottom: 2px solid transparent;
     color: var(--text2); cursor: pointer; transition: all 0.18s;
     margin-bottom: -1px;
@@ -750,15 +803,16 @@
   /* SUGGEST BUTTON */
   .suggest-btn {
     background: var(--bg2); border: 1px solid var(--border);
-    color: var(--text); border-radius: 8px;
-    padding: 7px 14px; font-size: 0.85rem;
+    color: var(--text); border-radius: 9999px;
+    padding: 8px 20px; font-size: 0.85rem;
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; font-weight: 500;
-    cursor: pointer; transition: all 0.2s;
-    display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-body); font-weight: 500;
+    cursor: pointer; transition: var(--transition-spring);
+    display: flex; align-items: center; gap: 7px;
   }
-  .suggest-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .suggest-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .suggest-btn:active { transform: scale(0.97); }
 
   /* SUGGEST MODAL */
   .suggest-overlay {
@@ -780,7 +834,7 @@
   .suggest-modal h3 {
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-heading);
     font-size: 0.95rem; margin-bottom: 20px;
   }
   .suggest-field { margin-bottom: 14px; }
@@ -796,7 +850,7 @@
     border-radius: 10px; color: var(--text);
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; font-size: 0.92rem;
+  font-family: var(--font-body); font-size: 0.92rem;
     outline: none; transition: border-color 0.2s;
   }
   .suggest-field input:focus,
@@ -807,11 +861,11 @@
   .suggest-actions button { flex: 1; }
   .suggest-cancel {
     padding: 11px; background: none;
-    border: 1px solid var(--border); border-radius: 10px;
+    border: 1px solid var(--border); border-radius: 9999px;
     color: var(--text2); cursor: pointer;
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; transition: all 0.2s;
+  font-family: var(--font-body); transition: var(--transition-spring);
   }
   .suggest-cancel:hover { border-color: var(--accent); color: var(--accent); }
   .suggest-success {
@@ -830,7 +884,7 @@
   .panel-tab {
     padding: 10px 18px; background: none; border: none;
     border-bottom: 2px solid transparent;
-    font-family: 'Golos Text', sans-serif; font-size: 0.88rem;
+    font-family: var(--font-body); font-size: 0.88rem;
     color: var(--text2); cursor: pointer; transition: all 0.18s;
     position: relative; top: 1px;
   }
@@ -877,7 +931,7 @@
   }
   .mod-expand-btn {
     background: none; border: none; color: var(--accent);
-    font-family: 'Golos Text', sans-serif; font-size: 0.8rem;
+    font-family: var(--font-body); font-size: 0.8rem;
     cursor: pointer; padding: 0; margin-bottom: 10px;
     display: flex; align-items: center; gap: 4px; transition: opacity 0.2s;
   }
@@ -889,7 +943,7 @@
     border: none; border-radius: 9px; cursor: pointer;
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Golos Text', sans-serif; font-size: 0.85rem;
+    font-family: var(--font-body); font-size: 0.85rem;
     transition: all 0.2s; font-weight: 600;
     box-shadow: 0 3px 10px rgba(34,197,94,0.3);
   }
@@ -899,7 +953,7 @@
     border: 1px solid #ef4444; border-radius: 8px; cursor: pointer;
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Golos Text', sans-serif; font-size: 0.85rem;
+  font-family: var(--font-body); font-size: 0.85rem;
     transition: all 0.2s;
   }
   .mod-reject:hover { background: #ef4444; color: #fff; }
@@ -926,12 +980,12 @@
   .discord-btn {
     display: flex; align-items: center; gap: 8px;
     background: #5865F2; color: #fff;
-    border: none; border-radius: 10px;
+    border: none; border-radius: 9999px;
     padding: 8px 16px; font-size: 0.85rem;
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Golos Text', sans-serif; font-weight: 600;
-    cursor: pointer; transition: all 0.2s;
+    font-family: var(--font-body); font-weight: 600;
+    cursor: pointer; transition: var(--transition-spring);
     text-decoration: none;
     box-shadow: 0 4px 16px rgba(88,101,242,0.35);
   }
@@ -979,10 +1033,10 @@
       <img src="logo.png" alt="" style="width:28px;height:28px;border-radius:7px;object-fit:cover;" onerror="this.style.display='none'">
       шаб<span>лоны</span>
     </a>
-    <nav style="display:flex;gap:4px;position:absolute;left:50%;transform:translateX(-50%);">
-      <a href="/" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Unbounded,sans-serif;font-weight:700;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Главная</a>
-      <a href="/templates" style="padding:6px 12px;border-radius:8px;color:var(--accent);background:var(--tag-bg);text-decoration:none;font-size:0.82rem;font-family:Unbounded,sans-serif;font-weight:700;">Шаблоны</a>
-      <a href="/typing" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Unbounded,sans-serif;font-weight:700;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Скорость печати</a>
+    <nav style="display:flex;gap:4px;align-items:center;">
+      <a href="/" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Главная</a>
+      <a href="/templates" style="padding:6px 12px;border-radius:8px;color:var(--accent);background:var(--tag-bg);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;">Шаблоны</a>
+      <a href="/typing" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Скорость печати</a>
     </nav>
     <div class="header-actions">
       <button class="theme-btn" id="themeBtn" title="Сменить тему" aria-label="Сменить тему"></button>
@@ -994,7 +1048,7 @@
           Войти
         </a>
       </div>
-      <button class="suggest-btn" id="openSuggest">✦ Предложить шаблон</button>
+      <button class="suggest-btn" id="openSuggest"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Предложить шаблон</button>
       <button class="admin-btn" id="openAdminLogin">Админ</button>
     </div>
   </div>
@@ -1028,8 +1082,8 @@
       </div>
     </div>
     <div id="suggestSuccessView" class="suggest-success" style="display:none;">
-      <div class="suggest-ok-icon">✅</div>
-      <h3 style="font-family:Unbounded,sans-serif;font-size:0.95rem;">Отправлено!</h3>
+      <div class="suggest-ok-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <h3 style="font-family:'Outfit',sans-serif;font-size:0.95rem;">Отправлено!</h3>
       <p>Ваш шаблон отправлен на проверку.<br>После одобрения он появится на сайте.</p>
       <button class="btn-primary" id="suggestDone" style="margin-top:20px;width:100%;padding:11px;">Готово</button>
     </div>
@@ -1042,7 +1096,7 @@
 <!-- CHAT SIDEBAR -->
 <aside class="chat-sidebar" id="chatSidebar">
   <div class="chat-header">
-    <span class="chat-title">💬 Чат</span>
+    <span class="chat-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Чат</span>
     <span class="chat-online" id="chatOnline"></span>
   </div>
   <div class="chat-messages" id="chatMessages">
@@ -1057,7 +1111,7 @@
     </div>
     <div class="chat-composer" id="chatComposer" style="display:none">
       <input type="text" id="chatInput" placeholder="Сообщение..." maxlength="300" autocomplete="off">
-      <button id="chatSend">↑</button>
+      <button id="chatSend"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
     </div>
   </div>
 </aside>
@@ -1067,8 +1121,12 @@
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-eyebrow">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg>
+    Библиотека шаблонов
+  </div>
   <h1>Готовые шаблоны на все моменты жизни</h1>
-  <p>Найди нужный шаблон, скопируй и используй  — как твоей душе угодно, без лишних вопросов.</p>
+  <p>Найди нужный шаблон, скопируй и используй — как угодно, без лишних вопросов.</p>
 </div>
 
 <!-- TABS -->
@@ -1089,7 +1147,9 @@
 <!-- CONTROLS -->
 <div class="controls">
   <div class="search-wrap">
-    <span class="search-icon">🔍</span>
+    <span class="search-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </span>
     <input type="text" id="searchInput" placeholder="Поиск шаблонов...">
   </div>
 </div>
@@ -1121,7 +1181,7 @@
   <div class="modal">
     <div class="modal-top">
       <h2 id="modalTitle">—</h2>
-      <button class="modal-close" id="modalClose">✕</button>
+      <button class="modal-close" id="modalClose"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="modal-meta">
       <span class="card-tag" id="modalCat">—</span>
@@ -1170,7 +1230,7 @@
     <br>
     <button class="btn-primary" id="loginBtn">Войти</button>
     <br><br>
-    <button style="width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:10px;color:var(--text2);cursor:pointer;font-family:Golos Text,sans-serif;" id="cancelLogin">Отмена</button>
+    <button style="width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:10px;color:var(--text2);cursor:pointer;font-family:var(--font-body);" id="cancelLogin">Отмена</button>
   </div>
 </div>
 
@@ -1216,14 +1276,14 @@
         <div style="margin-bottom:12px;">
           <label style="display:block;font-size:0.8rem;color:var(--text2);margin-bottom:8px;">Метка оригинальности</label>
           <div style="display:flex;gap:6px;">
-            <button type="button" class="form-origin-btn active" data-val="null" style="flex:1;padding:8px;background:var(--bg2);border:1px solid var(--accent);border-radius:8px;cursor:pointer;font-family:'Golos Text',sans-serif;font-size:0.78rem;color:var(--text2);transition:all 0.15s;">Без метки</button>
-            <button type="button" class="form-origin-btn" data-val="true" style="flex:1;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:'Golos Text',sans-serif;font-size:0.78rem;color:#86efac;transition:all 0.15s;">✦ Оригинал</button>
-            <button type="button" class="form-origin-btn" data-val="false" style="flex:1;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:'Golos Text',sans-serif;font-size:0.78rem;color:#fca5a5;transition:all 0.15s;">⊘ Позаимствованный</button>
+            <button type="button" class="form-origin-btn active" data-val="null" style="flex:1;padding:8px;background:var(--bg2);border:1px solid var(--accent);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:var(--text2);transition:all 0.15s;">Без метки</button>
+            <button type="button" class="form-origin-btn" data-val="true" style="flex:1;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#86efac;transition:all 0.15s;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Оригинал</button>
+            <button type="button" class="form-origin-btn" data-val="false" style="flex:1;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#fca5a5;transition:all 0.15s;">&#8856; Позаимствованный</button>
           </div>
         </div>
         <div style="display:flex;gap:10px;">
           <button class="btn-primary" id="saveTpl" style="flex:1">Сохранить шаблон</button>
-          <button id="cancelEdit" style="display:none;padding:11px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-family:Golos Text,sans-serif;color:var(--text);">Отмена</button>
+          <button id="cancelEdit" style="display:none;padding:11px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-family:var(--font-body);color:var(--text);">Отмена</button>
         </div>
       </div>
     </div>
@@ -1233,7 +1293,7 @@
       <h3>Категории</h3>
       <div class="add-form" style="margin-bottom:16px;">
         <div style="display:flex;gap:10px;">
-          <input type="text" id="newCatName" placeholder="Название категории" style="flex:1;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:Golos Text,sans-serif;font-size:0.92rem;outline:none;">
+          <input type="text" id="newCatName" placeholder="Название категории" style="flex:1;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font-body);font-size:0.92rem;outline:none;">
           <button class="btn-primary" id="addCatBtn" style="width:auto;padding:10px 20px;">Добавить</button>
         </div>
       </div>
@@ -1246,7 +1306,7 @@
       <h3>Выдача бейджей</h3>
       <div class="add-form">
         <div style="display:flex;gap:10px;margin-bottom:12px;">
-          <input type="text" id="badgeUidInput" placeholder="ID пользователя на сайте (например: 1234)" style="flex:1;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:Golos Text,sans-serif;font-size:0.92rem;outline:none;">
+          <input type="text" id="badgeUidInput" placeholder="ID пользователя на сайте (например: 1234)" style="flex:1;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font-body);font-size:0.92rem;outline:none;">
           <button class="btn-primary" id="badgeLookupBtn" style="width:auto;padding:10px 20px;">Найти</button>
         </div>
         <div id="badgeUserPreview" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;">
@@ -1259,20 +1319,20 @@
             </div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="badge-admin-btn" data-badge="✅" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:Golos Text,sans-serif;transition:border-color 0.2s;text-align:center;">
+            <button class="badge-admin-btn" data-badge="✅" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
               <div id="badgeBtnVerified" style="margin-bottom:4px;"></div>
               <div style="font-size:0.7rem;color:var(--text2);">Галочка</div>
             </button>
-            <button class="badge-admin-btn" data-badge="⭐" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:Golos Text,sans-serif;transition:border-color 0.2s;text-align:center;">
-              <div style="font-size:1.5rem;margin-bottom:4px;">⭐</div>
+            <button class="badge-admin-btn" data-badge="⭐" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
+              <div style="margin-bottom:4px;display:flex;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg></div>
               <div style="font-size:0.7rem;color:var(--text2);">Звезда</div>
             </button>
-            <button class="badge-admin-btn" data-badge="🌠" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:Golos Text,sans-serif;transition:border-color 0.2s;text-align:center;">
-              <div style="font-size:1.5rem;margin-bottom:4px;">🌠</div>
+            <button class="badge-admin-btn" data-badge="🌠" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
+              <div style="margin-bottom:4px;display:flex;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#a78bfa;"><path d="M12 3l1.5 4.5H18l-3.5 2.5 1.5 4.5L12 12l-4 2.5 1.5-4.5L6 7.5h4.5z"/><path d="M4 20l4-4"/></svg></div>
               <div style="font-size:0.7rem;color:var(--text2);">Комета</div>
             </button>
-            <button class="badge-admin-btn" data-badge="" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text2);font-family:Golos Text,sans-serif;transition:border-color 0.2s;text-align:center;">
-              <div style="font-size:1.2rem;margin-bottom:4px;">✕</div>
+            <button class="badge-admin-btn" data-badge="" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text2);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
+              <div style="margin-bottom:4px;display:flex;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
               <div style="font-size:0.7rem;">Убрать</div>
             </button>
           </div>
@@ -1283,12 +1343,12 @@
 
     <!-- Управление правами админа -->
     <div class="panel-section">
-      <h3>🔐 Управление правами администратора</h3>
+      <h3><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Управление правами администратора</h3>
       <div class="add-form">
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;">
           <p style="font-size:0.82rem;color:var(--text2);margin-bottom:14px;">Поиск по UID пользователя (число рядом с # в чате). Требуется мастер-пароль.</p>
           <div style="display:flex;gap:10px;margin-bottom:12px;">
-            <input type="text" id="adminRoleUidInput" placeholder="UID пользователя (например: 42)" style="flex:1;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:Golos Text,sans-serif;font-size:0.92rem;outline:none;">
+            <input type="text" id="adminRoleUidInput" placeholder="UID пользователя (например: 42)" style="flex:1;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font-body);font-size:0.92rem;outline:none;">
             <button class="btn-primary" id="adminRoleLookupBtn" style="width:auto;padding:10px 20px;">Найти</button>
           </div>
           <div id="adminRoleUserPreview" style="display:none;margin-bottom:14px;">
@@ -1305,11 +1365,11 @@
           <!-- Мастер-пароль -->
           <div id="adminRolePassSection" style="display:none;">
             <div style="display:flex;gap:10px;margin-bottom:10px;">
-              <input type="password" id="adminRoleMasterPass" placeholder="Мастер-пароль для выдачи прав" style="flex:1;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:Golos Text,sans-serif;font-size:0.92rem;outline:none;">
+              <input type="password" id="adminRoleMasterPass" placeholder="Мастер-пароль для выдачи прав" style="flex:1;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font-body);font-size:0.92rem;outline:none;">
             </div>
             <div style="display:flex;gap:10px;">
-              <button id="adminRoleGrantBtn" style="flex:1;padding:10px 16px;background:#22c55e;color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:Golos Text,sans-serif;font-size:0.88rem;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#16a34a'" onmouseout="this.style.background='#22c55e'">✓ Выдать права админа</button>
-              <button id="adminRoleRevokeBtn" style="flex:1;padding:10px 16px;background:#ef4444;color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:Golos Text,sans-serif;font-size:0.88rem;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#ef4444'">✕ Снять права админа</button>
+              <button id="adminRoleGrantBtn" style="flex:1;padding:10px 16px;background:#22c55e;color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:var(--font-body);font-size:0.88rem;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#16a34a'" onmouseout="this.style.background='#22c55e'">&#10003; Выдать права админа</button>
+              <button id="adminRoleRevokeBtn" style="flex:1;padding:10px 16px;background:#ef4444;color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:var(--font-body);font-size:0.88rem;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#ef4444'">&#10005; Снять права админа</button>
             </div>
             <div id="adminRolePassError" style="color:#ef4444;font-size:0.82rem;margin-top:8px;display:none;"></div>
           </div>
@@ -1327,7 +1387,7 @@
     <!-- MODERATION TAB -->
     <div class="panel-tab-content" id="tabModeration">
       <div class="panel-section">
-        <h3>Модерация шаблонов <span id="modBadge" style="display:inline-block;background:var(--accent);color:#fff;border-radius:20px;padding:1px 10px;font-size:0.75rem;margin-left:8px;font-family:Golos Text,sans-serif;"></span></h3>
+        <h3>Модерация шаблонов <span id="modBadge" style="display:inline-block;background:var(--accent);color:#fff;border-radius:20px;padding:1px 10px;font-size:0.75rem;margin-left:8px;font-family:var(--font-body);"></span></h3>
         <div id="modList"><div class="mod-empty">Загрузка...</div></div>
       </div>
     </div><!-- end tabModeration -->
@@ -1339,16 +1399,16 @@
         <div id="statsContent" style="display:flex;flex-direction:column;gap:16px;margin-top:16px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;">
-              <div style="font-size:2rem;font-weight:700;color:var(--accent);font-family:'Unbounded',sans-serif;" id="statVisits">—</div>
+              <div style="font-size:2rem;font-weight:700;color:var(--accent);font-family:'Outfit',sans-serif;" id="statVisits">—</div>
               <div style="font-size:0.8rem;color:var(--text2);margin-top:6px;">Уникальных посещений</div>
             </div>
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;">
-              <div style="font-size:2rem;font-weight:700;color:#86efac;font-family:'Unbounded',sans-serif;" id="statUsers">—</div>
+              <div style="font-size:2rem;font-weight:700;color:#86efac;font-family:'Outfit',sans-serif;" id="statUsers">—</div>
               <div style="font-size:0.8rem;color:var(--text2);margin-top:6px;">Зарегистрировано юзеров</div>
             </div>
           </div>
           <div style="font-size:0.75rem;color:var(--text2);text-align:center;" id="statsUpdated"></div>
-          <button onclick="loadStats()" style="width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:10px;color:var(--text2);cursor:pointer;font-family:'Golos Text',sans-serif;font-size:0.85rem;">↻ Обновить</button>
+          <button onclick="loadStats()" style="width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:10px;color:var(--text2);cursor:pointer;font-family:var(--font-body);font-size:0.85rem;">&#8635; Обновить</button>
         </div>
       </div>
     </div><!-- end tabStats -->
@@ -1548,10 +1608,11 @@ function toast(msg) {
 // ============================================================
 function copyText(text, btn) {
   navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = '✓ Скопировано'; btn.classList.add('copied');
+    const origHtml = btn.innerHTML;
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Скопировано';
+    btn.classList.add('copied');
     toast('Скопировано в буфер обмена');
-    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+    setTimeout(() => { btn.innerHTML = origHtml; btn.classList.remove('copied'); }, 2000);
   });
 }
 
@@ -1581,8 +1642,8 @@ function renderCatCards() {
     card.className = 'card';
     card.style.cursor = 'pointer';
     card.innerHTML = `
-      <div style="font-size:2rem;margin-bottom:4px">📁</div>
-      <h3 style="font-size:1rem">${c.name}</h3>
+      <div style="margin-bottom:4px;display:flex;align-items:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+      <h3 style="font-size:1rem;font-family:var(--font-heading);">${c.name}</h3>
       <p>${count} шаблон${count===1?'':count>1&&count<5?'а':'ов'}</p>`;
     card.addEventListener('click', () => {
       // переключить на вкладку шаблонов с фильтром
@@ -1630,16 +1691,18 @@ function renderGrid() {
     );
   }
   if (!list.length) {
-    grid.innerHTML = `<div class="empty"><div class="empty-icon">📭</div>Шаблоны не найдены</div>`;
+    grid.innerHTML = `<div class="empty"><div class="empty-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>Шаблоны не найдены</div>`;
     return;
   }
   grid.innerHTML = '';
   list.forEach((t, i) => {
     const catName = t.categories ? t.categories.name : '';
+    const bezel = document.createElement('div');
+    bezel.className = 'card-bezel';
+    bezel.style.transitionDelay = `${i * 60}ms`;
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.animationDelay = (i * 0.04) + 's';
-    const originBadge = t.is_original === true ? '<span class="tpl-origin original">✦ Оригинал</span>' : t.is_original === false ? '<span class="tpl-origin borrowed">⊘ Позаимствованный</span>' : '';
+    const originBadge = t.is_original === true ? '<span class="tpl-origin original"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Оригинал</span>' : t.is_original === false ? '<span class="tpl-origin borrowed">&#8856; Позаимствованный</span>' : '';
     const authorHtml = t.author_username ? `
       <div class="tpl-author">
         <div class="tpl-author-left">
@@ -1653,8 +1716,8 @@ function renderGrid() {
       <h3>${t.title}</h3>
       <p>${t.description || ''}</p>
       <div class="card-actions">
-        <button class="btn-copy">Скопировать</button>
-        <button class="btn-open">Открыть</button>
+        <button class="btn-copy" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Скопировать</button>
+        <button class="btn-open" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Открыть</button>
       </div>
       ${authorHtml}`;
     card.querySelector('.btn-copy').addEventListener('click', e => {
@@ -1665,7 +1728,23 @@ function renderGrid() {
       e.stopPropagation(); openModal(t);
     });
     card.addEventListener('click', () => openModal(t));
-    grid.appendChild(card);
+    bezel.appendChild(card);
+    grid.appendChild(bezel);
+  });
+  observeCards();
+}
+
+function observeCards() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.card-bezel').forEach(el => {
+    observer.observe(el);
   });
 }
 
@@ -1704,11 +1783,11 @@ function openModal(t) {
   const originEl = document.getElementById('modalOriginBadge');
   if (t.is_original === true) {
     originEl.className = 'tpl-origin original';
-    originEl.textContent = '✦ Оригинал';
+    originEl.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Оригинал';
     originEl.style.display = 'inline-flex';
   } else if (t.is_original === false) {
     originEl.className = 'tpl-origin borrowed';
-    originEl.textContent = '⊘ Позаимствованный';
+    originEl.innerHTML = '&#8856; Позаимствованный';
     originEl.style.display = 'inline-flex';
   } else {
     originEl.style.display = 'none';
@@ -1752,7 +1831,11 @@ function openModal(t) {
   btn.onclick = () => {
     const lines = (t.content || '').split('\n');
     const out = lines.map(l => l.trim() ? applyLineCopyOptions(l) : l).join('\n');
-    copyText(out, btn);
+    navigator.clipboard.writeText(out).then(() => {
+      btn.textContent = '✓ Скопировано'; btn.classList.add('copied');
+      toast('Скопировано в буфер обмена');
+      setTimeout(() => { btn.textContent = 'Скопировать текст'; btn.classList.remove('copied'); }, 2000);
+    });
   };
   const rawBtn = document.getElementById('modalCopyRaw');
   rawBtn.textContent = 'Скопировать raw'; rawBtn.classList.remove('copied');
@@ -2036,7 +2119,7 @@ function appendMessage(m, scroll = true) {
     div.dataset.discordId = user.discord_id || '';
     const isOwn = currentUser && currentUser.discord_id === user.discord_id;
     const badge = user.badge ? `<span class="chat-badge">${renderBadge(user.badge)}</span>` : '';
-    const trophyBadge = (user.id && user.id === dailyLeaderUserId) ? `<span title="Лидер дня по скорости печати">🏆</span>` : '';
+    const trophyBadge = (user.id && user.id === dailyLeaderUserId) ? `<span title="Лидер дня по скорости печати"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b;display:inline-block;vertical-align:middle;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg></span>` : '';
     const verifiedBadge = user.badge === '✅' ? `<span title="Верифицирован">${renderBadge('✅')}</span>` : '';
     const otherBadge = (user.badge && user.badge !== '✅') ? `<span class="chat-badge">${renderBadge(user.badge)}</span>` : '';
     const uid = user.uid ? `<span class="chat-uid">#${user.uid}</span>` : '';
@@ -2047,7 +2130,7 @@ function appendMessage(m, scroll = true) {
           <span class="chat-msg-name" style="cursor:pointer;" onclick="openUserProfile('${user.id || ''}',event)">${escHtml(user.username || 'Аноним')}</span>${verifiedBadge}${uid}${otherBadge}${trophyBadge}
           <span class="chat-msg-time">${time}</span>
           ${isOwn || isAdmin ? `<button class="chat-del-own-btn" data-id="${m.id}" title="Удалить" style="color:#ef4444">✕</button>` : ''}
-          ${isAdmin && user.discord_id ? `<button class="chat-admin-btn" data-action="mute" data-did="${user.discord_id}" data-name="${escHtml(user.username||'')}" title="${isMuted?'Размутить':'Замутить'}">${isMuted?'🔊':'🔇'}</button>` : ''}
+          ${isAdmin && user.discord_id ? `<button class="chat-admin-btn" data-action="mute" data-did="${user.discord_id}" data-name="${escHtml(user.username||'')}" title="${isMuted?'Размутить':'Замутить'}">${isMuted?'&#128266;':'&#128264;'}</button>` : ''}
 
         </div>
         <div class="chat-msg-text">${escHtml(m.content)}</div>
@@ -2149,7 +2232,7 @@ async function sendMessage(content) {
 
   if (sameCount >= SPAM_LIMIT) {
     // Delete all spam messages from DB
-    toast('🚫 Спам обнаружен! Сообщения удалены. Кулдаун 1 минута.');
+    toast('Спам обнаружен! Сообщения удалены. Кулдаун 1 минута.');
     // Set cooldown for this message
     spamCooldowns[uid][content] = now + SPAM_COOLDOWN_MS;
     // Clear local buffer
@@ -2203,7 +2286,7 @@ function refreshMuteUI(discordId) {
     el.classList.toggle('chat-msg-muted', !!mutedUsers[discordId]);
     const btn = el.querySelector('[data-action="mute"]');
     if (btn) btn.title = mutedUsers[discordId] ? 'Размутить' : 'Замутить';
-    if (btn) btn.textContent = mutedUsers[discordId] ? '🔊' : '🔇';
+    if (btn) btn.textContent = mutedUsers[discordId] ? '\u{1F50A}' : '\u{1F507}';
   });
 }
 
@@ -2258,14 +2341,14 @@ function showBadgePicker(discordId, username) {
   overlay.style.cssText = `position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;`;
   overlay.innerHTML = `
     <div style="background:var(--card);border-radius:16px;padding:24px;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-      <div style="font-family:Unbounded,sans-serif;font-size:0.9rem;margin-bottom:16px;">Значок для ${escHtml(username)}</div>
+      <div style="font-family:'Outfit',sans-serif;font-size:0.9rem;margin-bottom:16px;">Значок для ${escHtml(username)}</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
         ${BADGES.map(b => `
-          <button class="badge-pick-btn" data-emoji="${b.emoji||''}" style="flex:1;min-width:60px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:${b.emoji?'1.4rem':'0.8rem'};color:var(--text);font-family:Golos Text,sans-serif;transition:border-color 0.2s;">
-            ${b.emoji ? renderBadgePicker(b.emoji) : '✕'}<br><span style="font-size:0.7rem;color:var(--text2)">${b.label}</span>
+          <button class="badge-pick-btn" data-emoji="${b.emoji||''}" style="flex:1;min-width:60px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:${b.emoji?'1.4rem':'0.8rem'};color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;">
+            ${b.emoji ? renderBadgePicker(b.emoji) : '&#10005;'}<br><span style="font-size:0.7rem;color:var(--text2)">${b.label}</span>
           </button>`).join('')}
       </div>
-      <button id="badgePickerClose" style="width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:10px;color:var(--text2);cursor:pointer;font-family:Golos Text,sans-serif;">Отмена</button>
+      <button id="badgePickerClose" style="width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:10px;color:var(--text2);cursor:pointer;font-family:var(--font-body);">Отмена</button>
     </div>`;
 
   overlay.querySelectorAll('.badge-pick-btn').forEach(btn => {
@@ -2453,7 +2536,7 @@ async function verifyAdminRoleMasterPass() {
   const hash = await sha256(pass);
   if (hash !== ADMIN_ROLE_PASS_HASH) {
     const errEl = document.getElementById('adminRolePassError');
-    errEl.textContent = '❌ Неверный мастер-пароль';
+    errEl.textContent = 'Неверный мастер-пароль';
     errEl.style.display = 'block';
     return false;
   }
@@ -2485,7 +2568,7 @@ async function setAdminRole(grant) {
       else if (errData && errData.hint) errMsg = errData.hint;
     } catch(e) {}
     const errEl = document.getElementById('adminRolePassError');
-    errEl.textContent = '❌ Не удалось обновить права: ' + errMsg;
+    errEl.textContent = 'Не удалось обновить права: ' + errMsg;
     errEl.style.display = 'block';
     return;
   }
@@ -2493,7 +2576,7 @@ async function setAdminRole(grant) {
   const patchData = await patchRes.json();
   if (!patchData || patchData.length === 0) {
     const errEl = document.getElementById('adminRolePassError');
-    errEl.textContent = '❌ Пользователь не найден в БД по discord_id. Проверьте наличие записи.';
+    errEl.textContent = 'Пользователь не найден в БД по discord_id. Проверьте наличие записи.';
     errEl.style.display = 'block';
     return;
   }
@@ -2629,7 +2712,7 @@ async function renderModeration() {
     const badgeTab = document.getElementById('modBadgeTab');
     if (badgeTab) { badgeTab.textContent = items.length ? items.length : ''; badgeTab.style.display = items.length ? 'inline-block' : 'none'; }
     if (!items.length) {
-      list.innerHTML = '<div class="mod-empty">Нет предложений на проверке 🎉</div>';
+      list.innerHTML = '<div class="mod-empty">Нет предложений на проверке</div>';
       return;
     }
     list.innerHTML = '';
@@ -2655,9 +2738,9 @@ async function renderModeration() {
           Развернуть
         </button>
         <div class="mod-origin-row" style="display:flex;gap:6px;margin-bottom:8px;">
-          <button class="mod-origin-btn" data-val="null" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:'Golos Text',sans-serif;font-size:0.78rem;color:var(--text2);transition:all 0.15s;">Без метки</button>
-          <button class="mod-origin-btn" data-val="true" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:'Golos Text',sans-serif;font-size:0.78rem;color:#86efac;transition:all 0.15s;">✦ Оригинал</button>
-          <button class="mod-origin-btn" data-val="false" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:'Golos Text',sans-serif;font-size:0.78rem;color:#fca5a5;transition:all 0.15s;">⊘ Позаимствованный</button>
+          <button class="mod-origin-btn" data-val="null" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:var(--text2);transition:all 0.15s;">Без метки</button>
+          <button class="mod-origin-btn" data-val="true" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#86efac;transition:all 0.15s;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Оригинал</button>
+          <button class="mod-origin-btn" data-val="false" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#fca5a5;transition:all 0.15s;">&#8856; Позаимствованный</button>
         </div>
         <div class="mod-actions">
           <button class="mod-approve">✓ Одобрить</button>
@@ -2821,7 +2904,7 @@ async function init() {
     renderGrid();
   } catch(e) {
     document.getElementById('grid').innerHTML =
-      `<div class="empty"><div class="empty-icon">⚠️</div>Ошибка подключения к базе данных.<br><small style="font-size:0.78rem">Проверь настройки Supabase в коде.</small></div>`;
+      `<div class="empty"><div class="empty-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>Ошибка подключения к базе данных.<br><small style="font-size:0.78rem">Проверь настройки Supabase в коде.</small></div>`;
   }
 }
 init();
@@ -2894,11 +2977,11 @@ async function openUserProfile(userId, e) {
     const isLeader = u.id === dailyLeaderUserId;
 
     document.getElementById('profStats').innerHTML = [
-      ['🏅 Макс. WPM', realMaxWpm + ' wpm'],
-      ['📅 Регистрация', regDate],
-      ['💬 Сообщений', msgCount],
-      ['📋 Шаблонов', tplCount],
-      ...(isLeader ? [['🏆 Статус', 'Лидер дня!']] : []),
+      ['Макс. WPM', realMaxWpm + ' wpm'],
+      ['Регистрация', regDate],
+      ['Сообщений', msgCount],
+      ['Шаблонов', tplCount],
+      ...(isLeader ? [['Статус', 'Лидер дня!']] : []),
     ].map(([label, val]) => `
       <div style="background:var(--bg2);border-radius:10px;padding:12px 14px;">
         <div style="font-size:0.75rem;color:var(--text2);margin-bottom:4px;">${label}</div>
@@ -2932,7 +3015,7 @@ function closeUserProfile() {
           <span id="profName" style="font-weight:700;font-size:1.05rem;"></span><span id="profSub" style="font-size:1rem;color:var(--text2);"></span>
         </div>
       </div>
-      <button onclick="closeUserProfile()" style="background:none;border:none;color:var(--text2);font-size:1.2rem;cursor:pointer;padding:4px;">✕</button>
+      <button onclick="closeUserProfile()" style="background:none;border:none;color:var(--text2);cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div id="profStats" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
   </div>
