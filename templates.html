@@ -1035,9 +1035,9 @@
       шаб<span>лоны</span>
     </a>
     <nav style="display:flex;gap:4px;align-items:center;">
-      <a href="/" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;">Главная</a>
-      <a href="/templates" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--accent);background:var(--tag-bg);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;">Шаблоны</a>
-      <a href="/typing" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;">Скорость печати</a>
+      <a href="/" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:var(--font-heading);font-weight:700;">Главная</a>
+      <a href="/templates" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--accent);background:var(--tag-bg);text-decoration:none;font-size:0.82rem;font-family:var(--font-heading);font-weight:700;">Шаблоны</a>
+      <a href="/typing" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:var(--font-heading);font-weight:700;">Скорость печати</a>
     </nav>
     <div class="header-actions">
       <button class="theme-btn" id="themeBtn" title="Сменить тему" aria-label="Сменить тему"></button>
@@ -1833,7 +1833,7 @@ function openModal(t) {
     const lines = (t.content || '').split('\n');
     const out = lines.map(l => l.trim() ? applyLineCopyOptions(l) : l).join('\n');
     navigator.clipboard.writeText(out).then(() => {
-      btn.textContent = '✓ Скопировано'; btn.classList.add('copied');
+      btn.textContent = 'Скопировано'; btn.classList.add('copied');
       toast('Скопировано в буфер обмена');
       setTimeout(() => { btn.textContent = 'Скопировать текст'; btn.classList.remove('copied'); }, 2000);
     });
@@ -1842,7 +1842,7 @@ function openModal(t) {
   rawBtn.textContent = 'Скопировать raw'; rawBtn.classList.remove('copied');
   rawBtn.onclick = () => {
     navigator.clipboard.writeText(t.content).then(() => {
-      rawBtn.textContent = '✓ Скопировано'; rawBtn.classList.add('copied');
+      rawBtn.textContent = 'Скопировано'; rawBtn.classList.add('copied');
       setTimeout(() => { rawBtn.textContent = 'Скопировать raw'; rawBtn.classList.remove('copied'); }, 1800);
     });
   };
@@ -2345,7 +2345,7 @@ function showBadgePicker(discordId, username) {
       <div style="font-family:var(--font-heading);font-size:0.9rem;margin-bottom:16px;">Значок для ${escHtml(username)}</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
         ${BADGES.map(b => `
-          <button class="badge-pick-btn" data-emoji="${b.emoji||''}" style="flex:1;min-width:60px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;cursor:pointer;font-size:${b.emoji?'1.4rem':'0.8rem'};color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;">
+          <button class="badge-pick-btn" data-emoji="${b.emoji||''}" style="flex:1;min-width:60px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-size:${b.emoji?'1.4rem':'0.8rem'};color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;">
             ${b.emoji ? renderBadgePicker(b.emoji) : '&#10005;'}<br><span style="font-size:0.7rem;color:var(--text2)">${b.label}</span>
           </button>`).join('')}
       </div>
@@ -2739,9 +2739,9 @@ async function renderModeration() {
           Развернуть
         </button>
         <div class="mod-origin-row" style="display:flex;gap:6px;margin-bottom:8px;">
-          <button class="mod-origin-btn" data-val="null" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:var(--text2);transition:all 0.15s;">Без метки</button>
-          <button class="mod-origin-btn" data-val="true" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#86efac;transition:all 0.15s;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Оригинал</button>
-          <button class="mod-origin-btn" data-val="false" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#fca5a5;transition:all 0.15s;">&#8856; Позаимствованный</button>
+          <button class="mod-origin-btn" data-val="null" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:var(--text2);transition: border-color 0.2s, background 0.2s, color 0.2s;">Без метки</button>
+          <button class="mod-origin-btn" data-val="true" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#86efac;transition: border-color 0.2s, background 0.2s, color 0.2s;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Оригинал</button>
+          <button class="mod-origin-btn" data-val="false" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#fca5a5;transition: border-color 0.2s, background 0.2s, color 0.2s;">&#8856; Позаимствованный</button>
         </div>
         <div class="mod-actions">
           <button class="mod-approve">Одобрить</button>
