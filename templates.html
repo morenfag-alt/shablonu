@@ -146,10 +146,12 @@
   .header-actions { display: flex; align-items: center; gap: 10px; }
 
   .nav-link {
-    padding: 6px 12px; border-radius: 8px; text-decoration: none;
+    padding: 6px 12px; border-radius: 999px; text-decoration: none;
     font-size: 0.82rem; font-family: 'Unbounded', sans-serif; font-weight: 700;
-    transition: color 0.15s cubic-bezier(0.16,1,0.3,1);
+    transition: color 0.2s cubic-bezier(0.16,1,0.3,1), background 0.2s cubic-bezier(0.16,1,0.3,1);
+    white-space: nowrap;
   }
+  .nav-link:hover { color: var(--text) !important; background: var(--card) !important; }
   @media (max-width: 600px) { nav { display: none !important; } }
 
   .theme-btn {
@@ -1038,10 +1040,10 @@
       <img src="logo.png" alt="" style="width:28px;height:28px;border-radius:7px;object-fit:cover;" onerror="this.style.display='none'">
       шаб<span>лоны</span>
     </a>
-    <nav style="display:flex;gap:4px;position:absolute;left:50%;transform:translateX(-50%);">
-      <a href="/" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Unbounded,sans-serif;font-weight:700;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Главная</a>
-      <a href="/templates" style="padding:6px 12px;border-radius:8px;color:var(--accent);background:var(--tag-bg);text-decoration:none;font-size:0.82rem;font-family:Unbounded,sans-serif;font-weight:700;">Шаблоны</a>
-      <a href="/typing" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Unbounded,sans-serif;font-weight:700;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Скорость печати</a>
+    <nav style="display:flex;gap:2px;position:absolute;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:4px;">
+      <a href="/" class="nav-link" style="color:var(--text2);">Главная</a>
+      <a href="/templates" class="nav-link" style="color:var(--accent);background:var(--tag-bg);">Шаблоны</a>
+      <a href="/typing" class="nav-link" style="color:var(--text2);">Скорость печати</a>
     </nav>
     <div class="header-actions">
       <button class="theme-btn" id="themeBtn" title="Сменить тему" aria-label="Сменить тему"></button>
@@ -1053,7 +1055,10 @@
           Войти
         </a>
       </div>
-      <button class="suggest-btn" id="openSuggest">✦ Предложить шаблон</button>
+      <button class="suggest-btn" id="openSuggest">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        Предложить шаблон
+      </button>
       <button class="admin-btn" id="openAdminLogin">Админ</button>
     </div>
   </div>
@@ -1101,7 +1106,7 @@
 <!-- CHAT SIDEBAR -->
 <aside class="chat-sidebar" id="chatSidebar">
   <div class="chat-header">
-    <span class="chat-title">💬 Чат</span>
+    <span class="chat-title">Чат</span>
     <span class="chat-online" id="chatOnline"></span>
   </div>
   <div class="chat-messages" id="chatMessages">
@@ -1148,7 +1153,9 @@
 <!-- CONTROLS -->
 <div class="controls">
   <div class="search-wrap">
-    <span class="search-icon">🔍</span>
+    <span class="search-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </span>
     <input type="text" id="searchInput" placeholder="Поиск шаблонов...">
   </div>
 </div>
@@ -1167,7 +1174,7 @@
 <!-- TAB: CATEGORIES -->
 <div class="tab-panel" id="tabCategories">
   <div style="max-width:1100px;margin:0 auto;padding:32px 24px;">
-    <div id="catCardsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;"></div>
+    <div id="catCardsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;"></div>
   </div>
 </div>
 </div><!-- /tabCategories -->
