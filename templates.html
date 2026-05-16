@@ -6,7 +6,7 @@
 <title>Шаблоны — готовые тексты на все случаи</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <script src="theme.js"></script>
 <style>
   :root {
@@ -27,7 +27,7 @@
     --hero-grad-2: #b8864c;
     --hero-grad-3: #6d655c;
     --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Geist', 'DM Sans', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
     --radius-card: 20px;
     --radius-pill: 9999px;
     --transition-spring: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -177,7 +177,8 @@
   .theme-btn svg { transition: transform 0.5s cubic-bezier(0.32,0.72,0,1); }
   .theme-btn:hover svg { transform: rotate(25deg); }
 
-  .nav-link { transition: all 0.15s; }
+  .nav-link { transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  .nav-link:hover { color: var(--text) !important; }
   @media (max-width: 600px) { nav { display: none !important; } }
 
   .admin-btn {
@@ -273,7 +274,7 @@
     max-width: 1100px; margin: 0 auto;
     padding: 0 24px 60px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 20px;
   }
 
@@ -573,7 +574,7 @@
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   font-family: var(--font-body); cursor: pointer; border: none;
-    transition: all 0.15s;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
   }
   .btn-edit { background: var(--bg2); color: var(--text); border: 1px solid var(--border); }
   .btn-edit:hover { border-color: var(--accent); color: var(--accent); }
@@ -600,7 +601,7 @@
     font-family: var(--font-body);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     transform: translateY(20px); opacity: 0;
-    transition: all 0.3s; pointer-events: none;
+    transition: transform 0.3s, opacity 0.3s; pointer-events: none;
   }
   [data-theme="dark"] .toast { background: #f0f0ee; color: #1a1a1a; }
   .toast.show { transform: translateY(0); opacity: 1; }
@@ -764,7 +765,7 @@
   -webkit-font-smoothing: antialiased;
   font-family: var(--font-body); font-weight: 500;
     background: none; border: none; border-bottom: 2px solid transparent;
-    color: var(--text2); cursor: pointer; transition: all 0.18s;
+    color: var(--text2); cursor: pointer; transition: color 0.2s, border-color 0.2s;
     margin-bottom: -1px;
   }
   .tab-btn:hover { color: var(--text); }
@@ -885,7 +886,7 @@
     padding: 10px 18px; background: none; border: none;
     border-bottom: 2px solid transparent;
     font-family: var(--font-body); font-size: 0.88rem;
-    color: var(--text2); cursor: pointer; transition: all 0.18s;
+    color: var(--text2); cursor: pointer; transition: color 0.2s, border-color 0.2s;
     position: relative; top: 1px;
   }
   .panel-tab:hover { color: var(--text); }
@@ -940,17 +941,17 @@
   .mod-actions { display: flex; gap: 8px; }
   .mod-approve {
     padding: 8px 18px; background: linear-gradient(135deg, #16a34a, #22c55e); color: #fff;
-    border: none; border-radius: 9px; cursor: pointer;
+    border: none; border-radius: 9999px; cursor: pointer;
     font-synthesis: none;
-    -webkit-font-smoothing: antialiased;
-    font-family: var(--font-body); font-size: 0.85rem;
-    transition: all 0.2s; font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body); font-size: 0.85rem;
+    transition: filter 0.2s, transform 0.2s; font-weight: 600;
     box-shadow: 0 3px 10px rgba(34,197,94,0.3);
   }
   .mod-approve:hover { filter: brightness(1.1); transform: translateY(-1px); }
   .mod-reject {
     padding: 8px 18px; background: none; color: #ef4444;
-    border: 1px solid #ef4444; border-radius: 8px; cursor: pointer;
+    border: 1px solid #ef4444; border-radius: 9999px; cursor: pointer;
     font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   font-family: var(--font-body); font-size: 0.85rem;
@@ -1034,9 +1035,9 @@
       шаб<span>лоны</span>
     </a>
     <nav style="display:flex;gap:4px;align-items:center;">
-      <a href="/" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Главная</a>
-      <a href="/templates" style="padding:6px 12px;border-radius:8px;color:var(--accent);background:var(--tag-bg);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;">Шаблоны</a>
-      <a href="/typing" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Скорость печати</a>
+      <a href="/" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;">Главная</a>
+      <a href="/templates" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--accent);background:var(--tag-bg);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;">Шаблоны</a>
+      <a href="/typing" class="nav-link" style="padding:6px 12px;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.82rem;font-family:Outfit,sans-serif;font-weight:700;">Скорость печати</a>
     </nav>
     <div class="header-actions">
       <button class="theme-btn" id="themeBtn" title="Сменить тему" aria-label="Сменить тему"></button>
@@ -1083,7 +1084,7 @@
     </div>
     <div id="suggestSuccessView" class="suggest-success" style="display:none;">
       <div class="suggest-ok-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-      <h3 style="font-family:'Outfit',sans-serif;font-size:0.95rem;">Отправлено!</h3>
+      <h3 style="font-family:var(--font-heading);font-size:0.95rem;">Отправлено!</h3>
       <p>Ваш шаблон отправлен на проверку.<br>После одобрения он появится на сайте.</p>
       <button class="btn-primary" id="suggestDone" style="margin-top:20px;width:100%;padding:11px;">Готово</button>
     </div>
@@ -1319,19 +1320,19 @@
             </div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="badge-admin-btn" data-badge="✅" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
+            <button class="badge-admin-btn" data-badge="✅" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
               <div id="badgeBtnVerified" style="margin-bottom:4px;"></div>
               <div style="font-size:0.7rem;color:var(--text2);">Галочка</div>
             </button>
-            <button class="badge-admin-btn" data-badge="⭐" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
+            <button class="badge-admin-btn" data-badge="⭐" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
               <div style="margin-bottom:4px;display:flex;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg></div>
               <div style="font-size:0.7rem;color:var(--text2);">Звезда</div>
             </button>
-            <button class="badge-admin-btn" data-badge="🌠" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
+            <button class="badge-admin-btn" data-badge="🌠" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
               <div style="margin-bottom:4px;display:flex;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#a78bfa;"><path d="M12 3l1.5 4.5H18l-3.5 2.5 1.5 4.5L12 12l-4 2.5 1.5-4.5L6 7.5h4.5z"/><path d="M4 20l4-4"/></svg></div>
               <div style="font-size:0.7rem;color:var(--text2);">Комета</div>
             </button>
-            <button class="badge-admin-btn" data-badge="" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text2);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
+            <button class="badge-admin-btn" data-badge="" style="flex:1;min-width:70px;padding:10px 8px;background:var(--bg);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--text2);font-family:var(--font-body);transition:border-color 0.2s;text-align:center;">
               <div style="margin-bottom:4px;display:flex;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
               <div style="font-size:0.7rem;">Убрать</div>
             </button>
@@ -1399,11 +1400,11 @@
         <div id="statsContent" style="display:flex;flex-direction:column;gap:16px;margin-top:16px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;">
-              <div style="font-size:2rem;font-weight:700;color:var(--accent);font-family:'Outfit',sans-serif;" id="statVisits">—</div>
+              <div style="font-size:2rem;font-weight:700;color:var(--accent);font-family:var(--font-heading);" id="statVisits">—</div>
               <div style="font-size:0.8rem;color:var(--text2);margin-top:6px;">Уникальных посещений</div>
             </div>
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;">
-              <div style="font-size:2rem;font-weight:700;color:#86efac;font-family:'Outfit',sans-serif;" id="statUsers">—</div>
+              <div style="font-size:2rem;font-weight:700;color:#86efac;font-family:var(--font-heading);" id="statUsers">—</div>
               <div style="font-size:0.8rem;color:var(--text2);margin-top:6px;">Зарегистрировано юзеров</div>
             </div>
           </div>
@@ -1537,7 +1538,7 @@ function renderAuthArea() {
       <div class="user-info">
         <img class="user-avatar" src="${currentUser.avatar_url}" alt="">
         <span class="user-name">${currentUser.username}</span>
-        <button class="logout-btn" id="logoutBtn" title="Выйти">✕</button>
+        <button class="logout-btn" id="logoutBtn" title="Выйти"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>`;
     document.getElementById('logoutBtn').addEventListener('click', () => {
       currentUser = null;
@@ -2129,7 +2130,7 @@ function appendMessage(m, scroll = true) {
         <div class="chat-msg-meta">
           <span class="chat-msg-name" style="cursor:pointer;" onclick="openUserProfile('${user.id || ''}',event)">${escHtml(user.username || 'Аноним')}</span>${verifiedBadge}${uid}${otherBadge}${trophyBadge}
           <span class="chat-msg-time">${time}</span>
-          ${isOwn || isAdmin ? `<button class="chat-del-own-btn" data-id="${m.id}" title="Удалить" style="color:#ef4444">✕</button>` : ''}
+          ${isOwn || isAdmin ? `<button class="chat-del-own-btn" data-id="${m.id}" title="Удалить" style="color:#ef4444"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>` : ''}
           ${isAdmin && user.discord_id ? `<button class="chat-admin-btn" data-action="mute" data-did="${user.discord_id}" data-name="${escHtml(user.username||'')}" title="${isMuted?'Размутить':'Замутить'}">${isMuted?'&#128266;':'&#128264;'}</button>` : ''}
 
         </div>
@@ -2341,10 +2342,10 @@ function showBadgePicker(discordId, username) {
   overlay.style.cssText = `position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;`;
   overlay.innerHTML = `
     <div style="background:var(--card);border-radius:16px;padding:24px;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-      <div style="font-family:'Outfit',sans-serif;font-size:0.9rem;margin-bottom:16px;">Значок для ${escHtml(username)}</div>
+      <div style="font-family:var(--font-heading);font-size:0.9rem;margin-bottom:16px;">Значок для ${escHtml(username)}</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
         ${BADGES.map(b => `
-          <button class="badge-pick-btn" data-emoji="${b.emoji||''}" style="flex:1;min-width:60px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:${b.emoji?'1.4rem':'0.8rem'};color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;">
+          <button class="badge-pick-btn" data-emoji="${b.emoji||''}" style="flex:1;min-width:60px;padding:12px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;cursor:pointer;font-size:${b.emoji?'1.4rem':'0.8rem'};color:var(--text);font-family:var(--font-body);transition:border-color 0.2s;">
             ${b.emoji ? renderBadgePicker(b.emoji) : '&#10005;'}<br><span style="font-size:0.7rem;color:var(--text2)">${b.label}</span>
           </button>`).join('')}
       </div>
@@ -2514,7 +2515,7 @@ document.getElementById('adminRoleLookupBtn').addEventListener('click', async ()
     : (adminRoleTargetUser.is_admin === true);
   const statusEl = document.getElementById('adminRoleStatus');
   if (isAdminUser) {
-    statusEl.innerHTML = '<span style="color:#22c55e;font-weight:600;">✓ Имеет права администратора</span>';
+    statusEl.innerHTML = '<span style="color:#22c55e;font-weight:600;">Имеет права администратора</span>';
   } else {
     statusEl.innerHTML = '<span style="color:var(--text2);">Обычный пользователь</span>';
   }
@@ -2593,11 +2594,11 @@ async function setAdminRole(grant) {
   // Update status UI
   const statusEl = document.getElementById('adminRoleStatus');
   if (grant) {
-    statusEl.innerHTML = '<span style="color:#22c55e;font-weight:600;">✓ Имеет права администратора</span>';
-    toast(`✓ Права администратора выданы пользователю ${uname}`);
+    statusEl.innerHTML = '<span style="color:#22c55e;font-weight:600;">Имеет права администратора</span>';
+    toast(`Выдано: права администратора пользователю ${uname}`);
   } else {
     statusEl.innerHTML = '<span style="color:var(--text2);">Обычный пользователь</span>';
-    toast(`✕ Права администратора сняты у пользователя ${uname}`);
+    toast(`Снято: права администратора у пользователя ${uname}`);
   }
   document.getElementById('adminRoleMasterPass').value = '';
 }
@@ -2738,13 +2739,13 @@ async function renderModeration() {
           Развернуть
         </button>
         <div class="mod-origin-row" style="display:flex;gap:6px;margin-bottom:8px;">
-          <button class="mod-origin-btn" data-val="null" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:var(--text2);transition:all 0.15s;">Без метки</button>
-          <button class="mod-origin-btn" data-val="true" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#86efac;transition:all 0.15s;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Оригинал</button>
-          <button class="mod-origin-btn" data-val="false" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#fca5a5;transition:all 0.15s;">&#8856; Позаимствованный</button>
+          <button class="mod-origin-btn" data-val="null" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:var(--text2);transition:all 0.15s;">Без метки</button>
+          <button class="mod-origin-btn" data-val="true" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#86efac;transition:all 0.15s;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l2.09 6.43H22l-5.88 4.27 2.09 6.43L12 14.86l-6.21 4.27 2.09-6.43L2 8.43h7.91z"/></svg> Оригинал</button>
+          <button class="mod-origin-btn" data-val="false" style="flex:1;padding:7px 8px;background:var(--bg);border:1px solid var(--border);border-radius:9999px;cursor:pointer;font-family:var(--font-body);font-size:0.78rem;color:#fca5a5;transition:all 0.15s;">&#8856; Позаимствованный</button>
         </div>
         <div class="mod-actions">
-          <button class="mod-approve">✓ Одобрить</button>
-          <button class="mod-reject">✕ Отклонить</button>
+          <button class="mod-approve">Одобрить</button>
+          <button class="mod-reject">Отклонить</button>
         </div>`;
       const textEl = div.querySelector(`#modText_${item.id}`);
       const expandBtn = div.querySelector(`#modExpandBtn_${item.id}`);
